@@ -1,7 +1,4 @@
-aiosqlite==0.17.0
-asyncpg==0.22.0
 click==7.1.2
-databases==0.4.2
 fastapi==0.63.0
 greenlet==1.0.0
 h11==0.12.0
