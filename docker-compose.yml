@@ -14,6 +14,8 @@ services:
       context: .
       dockerfile: fastapi.Dockerfile
     command: bash -c "uvicorn main:app --host 0.0.0.0 --port 8000 --reload"
+    environment:
+      - DB_URL=postgresql://postgres:postgres@db/test_db
     volumes:
       - .:/code
     ports:

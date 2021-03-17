@@ -1,5 +1,6 @@
 from typing import List
 
+import os
 import databases
 import sqlalchemy
 from fastapi import FastAPI
@@ -7,7 +8,8 @@ from pydantic import BaseModel
 
 # SQLAlchemy specific code, as with any other app
 #DATABASE_URL = "sqlite:///./test.db"
-DATABASE_URL = "postgresql://postgres:postgres@db/test_db"
+#DATABASE_URL = "postgresql://postgres:postgres@db/test_db"
+DATABASE_URL=os.getenv("DB_URL", default="")
 
 database = databases.Database(DATABASE_URL)
 
