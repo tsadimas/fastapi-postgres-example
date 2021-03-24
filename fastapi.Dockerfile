@@ -1,6 +1,7 @@
 # Use an existing docker image as a base
 FROM python:3.9-buster
 
+RUN apt-get update && apt-get install wait-for-it
 # Set environment varibles
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
