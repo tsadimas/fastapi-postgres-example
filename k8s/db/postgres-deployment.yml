@@ -1,27 +1,38 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: postgres
+  name: pg-service
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      component: pg-service
   template:
     metadata:
       labels:
-        app: postgres
+        component: pg-service
     spec:
+      volumes:
+        - name:  pg-database-persistent-volume-storage
+          persistentVolumeClaim:
+            claimName: pg-pvc-claim
       containers:
         - name: postgres
-          image: postgres:11
-          imagePullPolicy: "IfNotPresent"
+          image: "postgres:11"
           ports:
             - containerPort: 5432
-          envFrom:
-            - configMapRef:
-                name: postgres-config
+          env:
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: pg-user
+                  key: PGUSER
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: pg-user
+                  key: PGPASSWORD
           volumeMounts:
-            - mountPath: /var/lib/postgresql/data
-              name: postgredb
-      volumes:
-        - name: postgredb
-          persistentVolumeClaim:
-            claimName: postgres-pv-claim
+            - name: pg-database-persistent-volume-storage
+              mountPath: /var/lib/postgresql/data
+              subPath: postgres
