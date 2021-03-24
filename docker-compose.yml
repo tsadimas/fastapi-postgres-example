@@ -25,11 +25,13 @@ services:
   nginx:
     image: nginx:latest
     volumes:
-      - ./nginx/nginx.http.config:/etc/nginx/nginx.conf
+      - ./nginx/nginx.https.config:/etc/nginx/nginx.conf
+      - ./nginx/certs:/etc/nginx/certs
     ports:
-      - "80:80"
+      - "443:443"
+    depends_on:
+      - web
   
-
 volumes:
   postgres_data:
 
