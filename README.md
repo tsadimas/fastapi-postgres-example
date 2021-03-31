@@ -87,7 +87,9 @@ echo '{"auths":{"ghcr.io":{"auth":"<AUTH>"}}}' | kubectl create secret generic d
 ```
 
 
+## Application overview
 
+![Image of Yaktocat](assets/img/fastapi-lab.png)
 # Links
 * [Control startup and shutdown order in Compose](https://docs.docker.com/compose/startup-order/)
 
@@ -96,3 +98,5 @@ echo '{"auths":{"ghcr.io":{"auth":"<AUTH>"}}}' | kubectl create secret generic d
 * [Configure docker to use with github packages](https://docs.github.com/en/packages/guides/configuring-docker-for-use-with-github-packages)
 
 * [create kubernetes secret to access github packages](https://stackoverflow.com/questions/61912589/how-can-i-use-github-packages-docker-registry-in-kubernetes-dockerconfigjson)
+
+* [kubernetes ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/)
