@@ -7,6 +7,10 @@ docker-compose up --build
 
 * connect to cluster
 
+## persistent volumes
+```bash
+kubectl apply -f k8s/db/postgres-pvc.yml
+```
 ## configmaps
 ### create fastapi configmap
 ```bash
