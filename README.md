@@ -37,8 +37,28 @@ kubectl create secret generic pg-user \
 --from-literal=PGUSER=<put user name here> \
 --from-literal=PGPASSWORD=<put password here>
 ```
+* tls secret
+```bash
+cd nginx/certs
+kubectl create secret generic tls-secret \ 
+ --from-file=tls.crt=server.crt \             
+ --from-file=tls.key=server.key\             
+ --from-file=ca.crt=ca_bundle.crt
+```
 
+## ingress
 
+* allow routing. Get the name of your network interface, e.g. eth0 and run
+```bash
+sudo ufw allow in on eth0 && sudo ufw allow out on eth0
+sudo ufw default allow routed
+```
+
+* apply ingress yml file(s)
+```bash
+kaf k8s/ingress/fastapi-ingress-.yml # for http only
+kaf k8s/ingress/fastapi-ingress-ssl.yml # for https
+```
 # docker registry
 ## Github Packages
 * enable improved container support
@@ -47,7 +67,7 @@ kubectl create secret generic pg-user \
 ```bash
 docker build -t ghcr.io/tsadimas/myfastapi:latest -f fastapi.Dockerfile .
 ```
-* login to deokcer registry
+* login to docker registry
 ```bash
 cat ~/github-image-repo.txt | docker login ghcr.io -u tsadimas --password-stdin
 ```
