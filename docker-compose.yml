@@ -1,6 +1,17 @@
 version: "3"
 
 services:
+  mqtt:
+    image: eclipse-mosquitto
+    volumes:
+      - ./assets/conf/mosquitto.conf:/mosquitto/config/mosquitto.conf
+      - mqtt_data:/mosquitto/data
+    expose:
+      - "1833"
+      - "9001"
+    ports:
+      - "1833:1833"
+      - "9001:9001"
   db:
     image: postgres:11
     ports:
@@ -22,6 +33,7 @@ services:
       - "8000:8000"
     depends_on:
       - db
+      - mqtt
   nginx:
     image: nginx:latest
     volumes:
@@ -31,7 +43,8 @@ services:
       - "80:80"
     depends_on:
       - web
-  
+
 volumes:
   postgres_data:
+  mqtt_data:
 

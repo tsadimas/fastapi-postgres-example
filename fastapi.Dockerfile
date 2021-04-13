@@ -5,7 +5,7 @@ FROM python:3.9-buster
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-
+RUN apt-get update && apt-get install wait-for-it
 #Change working directory
 WORKDIR /app
 

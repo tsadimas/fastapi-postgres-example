@@ -100,3 +100,5 @@ echo '{"auths":{"ghcr.io":{"auth":"<AUTH>"}}}' | kubectl create secret generic d
 * [create kubernetes secret to access github packages](https://stackoverflow.com/questions/61912589/how-can-i-use-github-packages-docker-registry-in-kubernetes-dockerconfigjson)
 
 * [kubernetes ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/)
+
+* [mqtt](https://pypi.org/project/fastapi-mqtt/)
