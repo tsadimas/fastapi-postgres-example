@@ -8,13 +8,14 @@ from data.database import SessionLocal, engine
 
 from fastapi_mqtt import FastMQTT, MQTTConfig
 
+import os
 
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
 #MQTT initialization
-mqtt_config = MQTTConfig(host="mqtt")
+mqtt_config = MQTTConfig(host=os.getenv("MQTT_HOST", default="localhost"))
 
 mqtt = FastMQTT(
     config=mqtt_config
