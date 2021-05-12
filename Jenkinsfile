@@ -14,9 +14,7 @@ pipeline {
                     dockerTag = sh returnStdout: true, script: '''
                             #!/bin/bash -x
                             HEAD_COMMIT=$(git rev-parse --short HEAD)
-                            LATEST_TAG=$(git rev-list --tags --max-count=1)
-                            GIT_DESCRIBE=$(git describe --tags $LATEST_TAG)
-                            TAG=${GIT_DESCRIBE:-v1.0.0}-$HEAD_COMMIT-$BUILD_ID
+                            TAG=$HEAD_COMMIT-$BUILD_ID
                             echo $TAG 
                         '''
 
