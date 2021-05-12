@@ -86,6 +86,13 @@ echo <USER>:<TOKEN> | base64
 echo '{"auths":{"ghcr.io":{"auth":"<AUTH>"}}}' | kubectl create secret generic dockerconfigjson-github-com --type=kubernetes.io/dockerconfigjson --from-file=.dockerconfigjson=/dev/stdin
 ```
 
+# Testing
+```bash
+cp .env.example .env
+cd app
+pytest
+```
+
 
 ## Application overview
 
