@@ -8,19 +8,7 @@ pipeline {
                 git branch: 'orm', url: 'https://github.com/tsadimas/fastapi-postgres-example.git'  
             }
         }
-        stage('Create tag') {
-            steps {
-                script {
-                    dockerTag = sh returnStdout: true, script: '''
-                            #!/bin/bash -x
-                            HEAD_COMMIT=$(git rev-parse --short HEAD)
-                            TAG=$HEAD_COMMIT-$BUILD_ID
-                            echo $TAG 
-                        '''
-
-                }
-            }
-        }
+        
         stage('Test') {
             steps {
                 sh '''
@@ -38,8 +26,9 @@ pipeline {
         stage('docker') {
             steps {
                 sh '''
-                    echo $dockerTag
-                    docker build --rm --no-cache -t ghcr.io/tsadimas/myfastapi:$dockerTag -t ghcr.io/tsadimas/myfastapi:latest -f Dockerfile .  
+                    HEAD_COMMIT=$(git rev-parse --short HEAD)
+                    TAG=$HEAD_COMMIT-$BUILD_ID
+                    docker build --rm --no-cache -t ghcr.io/tsadimas/myfastapi:$TAG -t ghcr.io/tsadimas/myfastapi:latest -f Dockerfile .  
                 '''
             }
         }
