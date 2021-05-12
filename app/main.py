@@ -2,6 +2,8 @@ from typing import List
 
 from fastapi import Depends, FastAPI, HTTPException
 from sqlalchemy.orm import Session
+from pydantic import BaseSettings 
+
 
 from data import crud, models, schemas
 from data.database import SessionLocal, engine
