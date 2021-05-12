@@ -87,6 +87,7 @@ echo '{"auths":{"ghcr.io":{"auth":"<AUTH>"}}}' | kubectl create secret generic d
 ```
 
 # Testing
+a test.db file is generated inside app directory
 ```bash
 cp .env.example .env
 cd app
