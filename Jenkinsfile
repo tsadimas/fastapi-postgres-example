@@ -38,7 +38,7 @@ pipeline {
         stage('docker') {
             steps {
                 sh '''
-                    docker build --rm --no-cache -t ghcr.io/tsadimas/myfastapi:$DOCKER_VERSION -t ghcr.io/tsadimas/myfastapi:latest -t -f Dockerfile .  
+                    docker build --rm --no-cache -t ghcr.io/tsadimas/myfastapi:$dockerTag -t ghcr.io/tsadimas/myfastapi:latest -f Dockerfile .  
                 '''
             }
         }
