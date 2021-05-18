@@ -23,7 +23,7 @@ pipeline {
             }
         }
 
-        stage('docker') {
+        stage('docker build and push') {
             environment {
                 DOCKER_TOKEN = credentials('docker-push-secret')
             }
@@ -42,6 +42,17 @@ pipeline {
                 '''
             }
         
+        }
+        
+        stage('deploy to k8s') {
+            steps {
+                sh '''
+                    kubectl config use-context microk8s
+                    cd k8s/fastapi
+                    ls *.yaml | while read fl ; do kubectl apply -f $fl; done
+
+                ```
+            }
         }
     }
 }
