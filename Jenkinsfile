@@ -37,7 +37,7 @@ pipeline {
 
                 
                 sh '''
-                    echo $ DOCKER_TOKEN
+                    echo $DOCKER_TOKEN
                     docker push ghcr.io/tsadimas/myfastapi:latest
                 '''
             }
