@@ -24,6 +24,10 @@ pipeline {
         }
 
         stage('docker') {
+            environment {
+                DOCKER_TOKEN = credentials('github-image-repo.txt')
+            }
+
             steps {
                 sh '''
                     HEAD_COMMIT=$(git rev-parse --short HEAD)
@@ -31,10 +35,13 @@ pipeline {
                     docker build --rm --no-cache -t ghcr.io/tsadimas/myfastapi:$TAG -t ghcr.io/tsadimas/myfastapi:latest -f fastapi.Dockerfile .  
                 '''
 
+                
                 sh '''
+                    echo $ DOCKER_TOKEN
                     docker push ghcr.io/tsadimas/myfastapi:latest
                 '''
             }
+        
         }
     }
 }
