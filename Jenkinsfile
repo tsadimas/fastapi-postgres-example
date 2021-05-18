@@ -30,6 +30,10 @@ pipeline {
                     TAG=$HEAD_COMMIT-$BUILD_ID
                     docker build --rm --no-cache -t ghcr.io/tsadimas/myfastapi:$TAG -t ghcr.io/tsadimas/myfastapi:latest -f fastapi.Dockerfile .  
                 '''
+
+                sh '''
+                    docker push ghcr.io/tsadimas/myfastapi:latest
+                '''
             }
         }
     }
