@@ -32,7 +32,7 @@ pipeline {
                 sh '''
                     HEAD_COMMIT=$(git rev-parse --short HEAD)
                     TAG=$HEAD_COMMIT-$BUILD_ID
-                    docker build --rm --no-cache -t ghcr.io/tsadimas/myfastapi:$TAG -t ghcr.io/tsadimas/myfastapi:latest -f fastapi.Dockerfile .  
+                    docker build --rm -t ghcr.io/tsadimas/myfastapi:$TAG -t ghcr.io/tsadimas/myfastapi:latest -f fastapi.Dockerfile .  
                 '''
 
                 
@@ -49,7 +49,7 @@ pipeline {
                 sh '''
                     kubectl config use-context microk8s
                     cd k8s/fastapi
-                    ls *.yaml | while read fl ; do kubectl apply -f $fl; done
+                    ls *.yml | while read fl ; do kubectl apply -f $fl; done
 
                 '''
             }
