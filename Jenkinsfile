@@ -26,18 +26,21 @@ pipeline {
         stage('docker build and push') {
             environment {
                 DOCKER_TOKEN = credentials('docker-push-secret')
+                DOCKER_USER = 'tsadimas'
+                DOCKER_SERVER = 'ghcr.io'
+                DOCKER_PREFIX = 'ghcr.io/tsadimas/myfastapi'
             }
 
             steps {
                 sh '''
                     HEAD_COMMIT=$(git rev-parse --short HEAD)
                     TAG=$HEAD_COMMIT-$BUILD_ID
-                    docker build --rm -t ghcr.io/tsadimas/myfastapi:$TAG -t ghcr.io/tsadimas/myfastapi:latest -f fastapi.Dockerfile .  
+                    docker build --rm -t $DOCKER_PREFIX:$TAG -t $DOCKER_PREFIX:latest -f fastapi.Dockerfile .  
                 '''
 
                 
                 sh '''
-                    echo $DOCKER_TOKEN | docker login ghcr.io -u tsadimas --password-stdin
+                    echo $DOCKER_TOKEN | docker login $DOCKER_SERVER -u $DOCKER_USER --password-stdin
                     docker push ghcr.io/tsadimas/myfastapi:latest
                 '''
             }
