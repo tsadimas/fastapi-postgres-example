@@ -25,7 +25,7 @@ pipeline {
 
         stage('docker') {
             environment {
-                DOCKER_TOKEN = credentials('github-image-repo.txt')
+                DOCKER_TOKEN = credentials('docker-push-secret')
             }
 
             steps {
