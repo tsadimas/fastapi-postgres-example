@@ -51,7 +51,7 @@ pipeline {
                     cd k8s/fastapi
                     ls *.yaml | while read fl ; do kubectl apply -f $fl; done
 
-                ```
+                '''
             }
         }
     }
