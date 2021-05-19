@@ -71,4 +71,7 @@ persistence:
   annotations: {}
 
 
-
+resources:
+  requests:
+    memory: 256Mi
+    cpu: 100m
