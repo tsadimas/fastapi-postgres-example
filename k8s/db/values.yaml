@@ -2,13 +2,6 @@
 ## ref: https://hub.docker.com/r/bitnami/postgresql/tags/
 ##
 
-global:
-  postgresql: {}
-#   imageRegistry: myRegistryName
-#   imagePullSecrets:
-#     - myRegistryKeySecretName
-  storageClass: microk8s-hostpath
-
 image:
   tag: 12.7.0-debian-10-r6
   ## Specify a imagePullPolicy
@@ -38,8 +31,11 @@ nameOverride: postgres
 fullnameOverride: postgres
 
 ## PostgreSQL password using existing secret
-existingSecret: pg-user
+# existingSecret: pg-user
 ##
+
+postgresqlUsername: postgres
+postgresqlPassword: pass123
 
 ## PostgreSQL client authentication configuration
 ## Specify content for pg_hba.conf
@@ -72,7 +68,7 @@ persistence:
   ## PostgreSQL images.
   ##
   mountPath: /bitnami/postgresql
-  storageClass: standard
+  storageClass: microk8s-hostpath
   accessModes:
     - ReadWriteOnce
   size: 2Gi
