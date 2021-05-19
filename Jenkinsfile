@@ -46,6 +46,16 @@ pipeline {
             }
         
         }
+
+        stage('deploy postgres to k8s') {
+            steps {
+                sh '''
+                helm repo add bitnami https://charts.bitnami.com/bitnami
+                helm repo update
+                helm install my-postgres bitnami/postgresql -f k8s/db/values.yaml
+                '''
+            }
+        }
         
         stage('deploy to k8s') {
             steps {
