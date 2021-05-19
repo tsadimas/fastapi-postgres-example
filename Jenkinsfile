@@ -41,7 +41,7 @@ pipeline {
                 
                 sh '''
                     echo $DOCKER_TOKEN | docker login $DOCKER_SERVER -u $DOCKER_USER --password-stdin
-                    docker push ghcr.io/tsadimas/myfastapi:latest
+                    docker push ghcr.io/tsadimas/myfastapi --all-tags
                 '''
             }
         
@@ -52,7 +52,7 @@ pipeline {
                 sh '''
                 helm repo add bitnami https://charts.bitnami.com/bitnami
                 helm repo update
-                helm install my-postgres bitnami/postgresql -f k8s/db/values.yaml
+                helm upgrade --install my-postgres bitnami/postgresql -f k8s/db/values.yaml
                 '''
             }
         }
