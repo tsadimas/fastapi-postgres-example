@@ -1,6 +1,14 @@
 ## Bitnami PostgreSQL image version
 ## ref: https://hub.docker.com/r/bitnami/postgresql/tags/
 ##
+
+global:
+  postgresql: {}
+#   imageRegistry: myRegistryName
+#   imagePullSecrets:
+#     - myRegistryKeySecretName
+  storageClass: microk8s-hostpath
+
 image:
   tag: 12.7.0-debian-10-r6
   ## Specify a imagePullPolicy
