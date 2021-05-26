@@ -63,6 +63,8 @@ pipeline {
                     kubectl config use-context microk8s
                     cd k8s/fastapi
                     ls *.yml | while read fl ; do kubectl apply -f $fl; done
+                    cd k8s/db
+                    ls *.yml | while read fl ; do kubectl apply -f $fl; done
 
                 '''
             }
