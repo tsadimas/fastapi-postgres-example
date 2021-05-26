@@ -7,10 +7,12 @@ spec:
   selector:
     matchLabels:
       component: pg-service
+      app: db
   template:
     metadata:
       labels:
         component: pg-service
+        app: db
     spec:
       volumes:
         - name:  pg-database-persistent-volume-storage

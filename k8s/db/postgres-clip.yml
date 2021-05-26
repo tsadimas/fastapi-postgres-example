@@ -6,6 +6,7 @@ spec:
   type: ClusterIP
   selector:
     component: pg-service
+    app: db
   ports:
     - port: 5432
       targetPort: 5432
