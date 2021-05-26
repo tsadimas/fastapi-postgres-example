@@ -12,7 +12,7 @@ pipeline {
         stage('Test') {
             steps {
                 sh '''
-                    python3 -m venv fvenv
+                    python3.9 -m venv fvenv
                     source fvenv/bin/activate
                     pip install -r requirements.txt
                     cd app
