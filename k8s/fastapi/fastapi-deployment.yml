@@ -7,12 +7,12 @@ spec:
   selector:
     matchLabels:
       component: fastapi
-      app: fastapi
+      app: myapi
   template:
     metadata:
       labels:
         component: fastapi
-        app: fastapi
+        app: myapi
     spec:
       containers:
         - name: fastapi
