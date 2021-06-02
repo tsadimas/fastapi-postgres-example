@@ -15,7 +15,7 @@ models.Base.metadata.create_all(bind=engine)
 app = FastAPI()
 
 #MQTT initialization
-mqtt_config = MQTTConfig(host=os.getenv("MQTT_HOST", default="localhost"))
+mqtt_config = MQTTConfig(host=os.getenv("MQTT_HOST", default="localhost"), port=1833, keepalive=60)
 
 mqtt = FastMQTT(
     config=mqtt_config
